@@ -1,7 +1,11 @@
-IDC-keynote
+FOSDEM-lightning
 ===========
 
-Low or no cost evolutionary computation, an app that is at the same time a presentation of the concept of low or no cost evolutionary computation.
+Low or no cost evolutionary computation, an app that is at the same
+time a presentation of the concept of low or no cost evolutionary
+computation. This presentation is adapted from the
+[IDC keynote](https://github.com/JJ/IDC-keynote), with the same
+structure, minus the crashes. 
 
 # A presentation for IDC developed from node-js-getting-started
 
@@ -19,6 +23,14 @@ $ cd IDC-keynote
 $ npm install
 $ npm start
 ```
+or
+
+	$ foreman start web
+
+if you have the Heroku toolbelt already installed. 
+
+
+
 
 Your app should now be running on [localhost:5000](http://localhost:5000/).
 
