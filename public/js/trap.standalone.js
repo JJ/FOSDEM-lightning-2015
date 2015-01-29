@@ -73,7 +73,13 @@ function tabify ( x, l, a, b, z ) {
 	    fitness_data.labels.push(generation_count);
 	    fitness_data.datasets[0].data.push(eo.population[0].fitness);
 	    this_chart.Line(fitness_data);
-	    
+	    // gets a random chromosome from the pool
+	    $.get("/random", function( data ) {
+		if ( data.chromosome ) {
+		    eo.incorporate( data.chromosome );
+//		    alert('Getting ' + data.chromosome );
+		}
+	    });
 	}
 	
 	if ( eo.population[0].fitness < traps*trap_b ) {
@@ -261,6 +267,7 @@ module.exports = function( options ) {
     this.evaluation = evaluation;
     this.generation= generation;
     this.rank=rank;
+    this.incorporate=incorporate;
 };
 
 // create fitness function object if it does not exist
@@ -317,7 +324,18 @@ function generation() {
     this.rank(); // ranking twice????
 }
 
-
+// Population should be sorted, so the worst is the last
+function incorporate( chromosome ) {
+//    console.log(chromosome);
+    if ( chromosome.length != this.chromosome_size )
+	throw "Bad chromosome length" + chromosome.length + "!=" + this.chromosome_size ;
+    var new_guy = new Chromosome( chromosome,
+				  this.fitness_obj.apply( chromosome ) );
+    this.population.push( new_guy );
+    this.rank();
+    this.population.pop(); // extracts the last
+    
+}
 
 },{"./Utils":2,"./chromosome":3,"./ops":6}],5:[function(require,module,exports){
 /**
