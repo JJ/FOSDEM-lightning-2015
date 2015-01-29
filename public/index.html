@@ -91,7 +91,12 @@
 		<h1 class='bkg'>A distributed evolutionary algorithm</h1>
 		<h2 class='bkg'>Right there, in your browser</h2>
 	      </section>
-		
+
+	      <section style="text-align: left;">
+		<h1>Fitness</h1>
+		<!-- zooms graph -->
+	      </section>
+
 	      <section style="text-align: left;">
 		<h1>Thanks!</h1>
 		<h2>Questions?</h2>
@@ -137,6 +142,22 @@
 				]
 			});
 
+		 Reveal.addEventListener( 'slidechanged', function( event ) {
+		   if ( event.indexh === 7 ) {
+		     var graphdiv = document.getElementById('graph');
+		     graphdiv.style.right='450px';
+		     var graph= document.getElementById('fitness');
+		     graph.style.width='800px';
+		     graph.style.height='600px';
+		   }
+		    if ( event.indexh === 8 ) {
+		     var graphdiv = document.getElementById('graph');
+		     graphdiv.style.right='20px';
+		     var graph= document.getElementById('fitness');
+		     graph.style.width='240px';
+		     graph.style.height='180px';
+		   }
+		 } );
 		</script>
 		<script type="text/javascript" src='js/trap.standalone.js'></script>
 
