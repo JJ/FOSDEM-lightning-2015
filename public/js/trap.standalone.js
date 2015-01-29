@@ -71,7 +71,7 @@ function tabify ( x, l, a, b, z ) {
 	if ( (generation_count % period === 0) ) {
 	    console.log(generation_count);
 	    fitness_data.labels.push(generation_count);
-	    fitness_data.datasets[0].data.push(eo.fitness_of[eo.population[0]]);
+	    fitness_data.datasets[0].data.push(eo.population[0].fitness);
 	    this_chart.Line(fitness_data);
 	    
 	}
