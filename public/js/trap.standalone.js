@@ -1,35 +1,89 @@
+function tabify ( x, l, a, b, z ) {
+    var tab = "<table style='border:1px solid black;padding:0;margin:0'><tr>";
+    for ( var i = 0; i < x.length; i+=4 ) {
+	tab += "<td style='background-color:";
+	var this_substr = x.substr(  i, l );
+	var num_ones = 0;
+	for ( var j = 0;  j < this_substr.length; j++ ) {
+	  num_ones += (this_substr.substring(j,j+1) === "1"); 
+	}
+	var this_result;
+	if ( num_ones <= z ) {
+	  this_result = a*(z-num_ones)/z;
+	} else {
+	  this_result = b*(num_ones -z)/(l-z);
+	}
+	
+	var colors=['white','lightgray','darkgray','black'];
+	tab += colors[this_result*2]+"'> </td>";
+    }
+    tab += "</tr></table>";
+    return tab;
+}
+
 !function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var o;"undefined"!=typeof window?o=window:"undefined"!=typeof global?o=global:"undefined"!=typeof self&&(o=self),o.nodeo=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function (process){
 
+    // Optimization of the deceptive trap function
 
-'use strict';
+    var Classic = require('../lib/classic.js'),
+    trap = require('../lib/trap.js');
+    
+    var population_size = 256;
+    var period = 50;
+    var traps = 30;
+    var trap_len = 4;
+    var trap_b =  2;
+    var chromosome_size = traps*trap_len;
+    
+    var trap_fitness = new trap.Trap(  { "l": trap_len, 
+					 "a": 1, 
+					 "b": trap_b, 
+					 "z": trap_len -1  } );
+    
+    var eo = new Classic( { population_size: population_size,
+			    chromosome_size: chromosome_size,
+			    fitness_func: trap_fitness } );
+    
+    // get line chart canvas
+    var buyers = document.getElementById('fitness').getContext('2d');
+    
+    // Chart data
+    var this_chart = new Chart(buyers);
+    var fitness_data = {
+        labels : [],
+        datasets : [
+            {
+                fillColor : "rgba(172,194,132,0.4)",
+                strokeColor : "#ACC26D",
+                pointColor : "#fff",
+                pointStrokeColor : "#9DB86D",
+                data : []
+            }
+        ]
+    };
 
-// Optimization of the deceptive trap function
-// It might take a long time... or never end. Just ctrl-C when you're done.
+    var generation_count=0;
+    
+    (function do_ea() {
+	eo.generation();
+	generation_count++;
+	if ( (generation_count % period === 0) ) {
+	    console.log(generation_count);
+	    fitness_data.labels.push(generation_count);
+	    fitness_data.datasets[0].data.push(eo.fitness_of[eo.population[0]]);
+	    this_chart.Line(fitness_data);
+	    
+	}
+	
+	if ( eo.population[0].fitness < traps*trap_b ) {
+	    setTimeout(do_ea, 5);
+	} else {
+	    console.log(  eo.population[0] );
+	}
+    })();
 
-var Classic = require('../lib/classic.js'),
-trap = require('../lib/trap.js');
-
-var population_size = process.argv[2] || 256;
-var traps = process.argv[3] || 100;
-var trap_len = process.argv[4] || 4;
-var trap_b = process.argv[5] || 2;
-var chromosome_size = traps*trap_len;
-var trap_fitness = new trap.Trap(  { "l": trap_len, 
-				     "a": 1, 
-				     "b": trap_b, 
-				     "z": trap_len -1  } );
-
-var eo = new Classic( { population_size: population_size,
-			chromosome_size: chromosome_size,
-			fitness_func: trap_fitness } );
-
-do {
-    eo.generation();
-    console.log( eo.population[0] );
-} while ( eo.population[0].fitness < traps*trap_b );
-
-console.log(eo.population);
+    console.log(eo.population);
 
 }).call(this,require('_process'))
 },{"../lib/classic.js":4,"../lib/trap.js":7,"_process":8}],2:[function(require,module,exports){
