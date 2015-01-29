@@ -1,4 +1,4 @@
-var express = require('express')
+var express = require('express');
 var app = express();
 
 app.set('port', (process.env.PORT || 5555))
@@ -51,3 +51,6 @@ app.use(function(err, req, res, next){
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
 })
+
+// Exports for tests
+module.exports = app;
