@@ -12,24 +12,25 @@ app.use(express.static(__dirname + '/public'))
 var log = [];
 var chromosomes = {};
 
-// API Definitions
+// Retrieves a random chromosome
 app.get('/random', function(req, res){
 	    if (Object.keys(chromosomes ).length > 0) {
 		var keys = Object.keys(chromosomes );
 		var one = keys[ Math.floor(keys.length*Math.random())];
 		res.send({ chromosome : one });
-		log.push( { get: process.hrtime()});
+		log.push({ get: process.hrtime()});
 	    } else {
 		res.status(404).send('No chromosomes yet');
 	    }
 	   
 });
 
+// Retrieves the log
 app.get('/log', function(req, res){
 	    res.send( log );
 });
 
-// API Definitions
+// Adds one chromosome to the pool
 app.put('/one/:chromosome', function(req, res){
 	    if ( req.params.chromosome ) {
 		chromosomes[ req.params.chromosome ] = 1; // to avoid repeated chromosomes
@@ -43,11 +44,13 @@ app.put('/one/:chromosome', function(req, res){
 	    
 });
 
+// Error check
 app.use(function(err, req, res, next){
 	      //check error information and respond accordingly
 	      console.error( "Exception in server ", err.stack);
 });
 
+// Start listening
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
 })
