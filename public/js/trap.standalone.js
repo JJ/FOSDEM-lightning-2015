@@ -30,7 +30,7 @@ function tabify ( x, l, a, b, z ) {
     trap = require('../lib/trap.js');
     
     var population_size = 256;
-    var period = 50;
+    var period = 100;
     var traps = 30;
     var trap_len = 4;
     var trap_b =  2;
@@ -80,6 +80,10 @@ function tabify ( x, l, a, b, z ) {
 //		    alert('Getting ' + data.chromosome );
 		}
 	    });
+
+	    // And puts another one in the pool
+	    $.ajax({ type: 'put',
+		     url: "one/"+eo.population[0].string } );
 	}
 	
 	if ( eo.population[0].fitness < traps*trap_b ) {
