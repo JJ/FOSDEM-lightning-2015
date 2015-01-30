@@ -23,7 +23,6 @@
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="css/extra.css">
 
-
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
@@ -34,7 +33,9 @@
 		</script>
 		
 		<!-- presentations -->
+		<!-- for Ajax requests -->
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<!-- for Chart -->
 		<script type="text/javascript" src='js/Chart.min.js'></script>
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
@@ -67,7 +68,7 @@
 	      <section data-background='img/begging.jpg'>
 		<h1 class='bkg'>Why not give a few to science?</h1>
 		<h2 class='bkg'>Or enterprise</h2>
-		<h3 class='bkg'>... Or just for kicks</h3>
+		<h3 class='bkg fragment'>... Or just for kicks</h3>
 	      </section>
 
 	       <section data-background='img/totems-by-frana-blaylock.jpg'>
@@ -142,20 +143,21 @@
 			});
 
 		 Reveal.addEventListener( 'slidechanged', function( event ) {
-		   if ( event.indexh === 7 ) {
-		     var graphdiv = document.getElementById('graph');
-		     graphdiv.style.right='450px';
-		     var graph= document.getElementById('fitness');
-		     graph.style.width='800px';
-		     graph.style.height='600px';
-		   }
-		    if ( event.indexh === 8 ) {
-		     var graphdiv = document.getElementById('graph');
-		     graphdiv.style.right='20px';
-		     var graph= document.getElementById('fitness');
-		     graph.style.width='240px';
-		     graph.style.height='180px';
-		   }
+			var graphdiv = document.getElementById('graph');
+			var graph= document.getElementById('fitness');
+			if ( event.indexh === 7 ) {
+			graphdiv.style.left='200px';
+			graphdiv.style.top='100px';			
+			graph.style.width='90%';
+			graph.style.height='500px';
+			}
+			if ( event.indexh === 8 ) {
+			graphdiv.style.left='';
+			graphdiv.style.top='20px';
+			graphdiv.style.right='20px';
+			graph.style.width='240px';
+			graph.style.height='180px';
+			}
 		 } );
 		</script>
 		<script type="text/javascript" src='js/trap.standalone.js'></script>
