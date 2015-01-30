@@ -5,9 +5,9 @@ Low or no cost evolutionary computation, an app that is at the same
 time a presentation of the concept of low or no cost evolutionary
 computation. This presentation is adapted from the
 [IDC keynote](https://github.com/JJ/IDC-keynote), with the same
-structure, minus the crashes. 
+structure, minus the crashes. It should be (maybe permanently) deployed at http://all-yr-c.herokuapp.com. 
 
-# A presentation for IDC developed from node-js-getting-started
+# A presentation for FOSDEM developed from node-js-getting-started
 
 It was developed from a barebones Node.js app using [Express 4](http://expressjs.com/).
 
@@ -18,8 +18,8 @@ It was developed from a barebones Node.js app using [Express 4](http://expressjs
 Make sure you have [Node.js](http://nodejs.org/) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
 
 ```sh
-$ git clone git@github.com:JJ/IDC-keynote.git # or your very own fork
-$ cd IDC-keynote 
+$ git clone git@github.com:JJ/FOSDEM-lightning.git # or your very own fork
+$ cd FOSDEM-lightning
 $ npm install
 $ npm start
 ```
@@ -27,12 +27,7 @@ or
 
 	$ foreman start web
 
-if you have the Heroku toolbelt already installed. 
-
-
-
-
-Your app should now be running on [localhost:5000](http://localhost:5000/).
+if you have the Heroku toolbelt already installed. Your app should now be running on [localhost:5000](http://localhost:5000/).
 
 ## Deploying to Heroku
 
@@ -41,6 +36,8 @@ $ heroku create
 $ git push heroku master
 $ heroku open
 ```
+
+You can also configure Heroku to receive deployment directly from GitHub, which is cool.
 
 ## Documentation
 
@@ -53,4 +50,4 @@ For more information about using Node.js on Heroku, see these Dev Center article
 - [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
 
 - [Low or no cost evolutionary computation](http://aida.ii.uam.es/IDC2014/invited_speakers.php) at IDC web site.
-
+- [Fosdem](http://fosdem.org).
