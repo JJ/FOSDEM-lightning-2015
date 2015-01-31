@@ -4,10 +4,11 @@
 .reveal li { font-size:1.75em }
 .reveal li.credits { font-size:1.2em }
 .reveal h2 { margin-top:40 px }
+.reveal h2.sub {  text-transform: none;}
 .reveal .hl { border-radius:10px;
 	      background-color: rgba(255,255,0,0.8);
-	    padding-left: 10px;
-	    padding-right: 10px}
+	      padding-left: 10px;
+	      padding-right: 10px}
 .reveal ul.credits {
     font-size: 1.25em;
 }
