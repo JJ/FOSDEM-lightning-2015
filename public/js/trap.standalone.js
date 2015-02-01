@@ -31,7 +31,7 @@ function tabify ( x, l, a, b, z ) {
     
     var population_size = 256;
     var period = 100;
-    var traps = 30;
+    var traps = 40;
     var trap_len = 4;
     var trap_b =  2;
     var chromosome_size = traps*trap_len;
