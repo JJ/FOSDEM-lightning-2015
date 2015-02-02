@@ -1,8 +1,7 @@
 # Things to do
 
-* [ ] Finish slides
-* [ ] Clean up unneeded files
-* [ ] Write slides
+* [x] Finish slides
+* [x] Clean up unneeded files
 * [x] Use the browserified nodeo all the time
 * [ ] Prepare CSS for mobile/tablet
 * [ ] Make experiment restart easy
